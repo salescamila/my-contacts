@@ -1,3 +1,5 @@
+import type { LinksFunction } from "@remix-run/node";
+import appStylesHref from "./app.css";
 import {
   Form,
   Links,
@@ -6,6 +8,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: appStylesHref },
+];
 
 export default function App() {
   return (
@@ -22,13 +28,13 @@ export default function App() {
           <div>
             <Form id="search-form" role="search">
               <input
-                id="q"
                 aria-label="Search contacts"
+                id="q"
+                name="q"
                 placeholder="Search"
                 type="search"
-                name="q"
               />
-              <div id="search-spinner" aria-hidden hidden={true} />
+              <div aria-hidden hidden={true} id="search-spinner" />
             </Form>
             <Form method="post">
               <button type="submit">New</button>
